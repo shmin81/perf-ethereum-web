@@ -1,0 +1,8 @@
+[
+    { "name": "perf_dev", "endpoints": [ "http://chainz-jmeter-worknode1-1.chainz-jmeter:10050", "http://chainz-jmeter-worknode1-2.chainz-jmeter:10050", "http://chainz-jmeter-worknode1-3.chainz-jmeter:10050", "http://chainz-jmeter-worknode1-4.chainz-jmeter:10050" ] },
+    { "name": "perf_core", "endpoints": [ "http://chainz-jmeter-worknode2-1.chainz-jmeter2:10050", "http://chainz-jmeter-worknode2-2.chainz-jmeter2:10050", "http://chainz-jmeter-worknode2-3.chainz-jmeter2:10050", "http://chainz-jmeter-worknode2-4.chainz-jmeter2:10050" ] },
+    { "name": "local_1", "endpoints": [ "http://localhost:10050" ] },
+    { "name": "local_2", "endpoints": [ "http://localhost:10050", "http://localhost:10051" ] },
+    { "name": "local_3", "endpoints": [ "http://localhost:10050", "http://localhost:10051", "http://localhost:10052" ] },
+    { "name": "local_4", "endpoints": [ "http://localhost:10050", "http://localhost:10051", "http://localhost:10052", "http://localhost:10053" ] }
+]

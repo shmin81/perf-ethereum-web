@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>{{title}}</title>
+    <link href="css/style.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="js/Font.Awesome.Free.all.js" crossorigin="anonymous"></script>
+    <script src="js/lib.utils.js" defer></script>
+    <script src="js/ctrl_index.js" defer></script>
+  </head>
+  
+  <body>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">
+        {% block title_content %}
+        {% endblock %}
+      </div>
+      <div class="col"></div>
+    </div>
+    <hr>
+    <div class="container text-left">
+      <div class="row">
+        <div class="col">
+          <h4>Select an agent item from the list.</h4>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col">
+        <b>List of agents</b>
+        </div>
+        <div class="col">
+          <select id="agentList" class="form-select" onchange="agentItemChange()" aria-label="Default select example"></select>
+        </div>
+        <div class="col">
+          <button type="button" class="btn btn-danger" onclick="goToSelectedAgent()">Prepare for testing with selected agents</button>
+        </div>
+        <div class="col"></div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col"><b>Connection information of the selected agent</b></div>
+        <div class="col"><button type="button" class="btn btn-none">.</button></div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <pre id="agentInfos" style="width: 100%; height: 200px; overflow: auto;">(infos)</pre>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col"><b>Status of selected agent</b></div>
+        <div class="col">
+          <button type="button" class="btn btn-warning" onclick="getStatus()">Get status of selected agent</button>
+        </div>
+        <div class="col"></div>
+        <div class="col">
+          <button type="button" class="btn btn-danger" onclick="exitAgent()">Shut down the selected agent</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <pre id="resplog" style="width: 100%; height: 100%; overflow: auto;">(response)</pre>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <script src="js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  </body>
+</html>
