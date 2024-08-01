@@ -1,4 +1,3 @@
-
 function getUrlParams() {
   let params = {}
   window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (str, key, value) {
@@ -24,8 +23,8 @@ async function getAgentJson() {
   return await data.json()
 }
 
-async function getJSON (_url, skipResp = false) {
-//exports.getJSON = async function (_url, skipResp = false) {
+async function getJSON(_url, skipResp = false) {
+  //exports.getJSON = async function (_url, skipResp = false) {
   let msg = `\nsend(get)... ${_url}\n`
   try {
     const response = await fetch(_url)
@@ -48,8 +47,8 @@ async function getJSON (_url, skipResp = false) {
   }
 }
 
-async function postJSON (url, data = { a: 1 }) {
-//exports.postJSON = async function (url, data = { a: 1 }) {
+async function postJSON(url, data = { a: 1 }) {
+  //exports.postJSON = async function (url, data = { a: 1 }) {
   let msg = `\nsend(post)... ${url}\n`
   try {
     const response = await fetch(url, {
@@ -101,16 +100,14 @@ function clearAllLogs() {
   clearAgentLog()
 }
 
-
-let timerLogsId=null
+let timerLogsId = null
 function btnAutoOrManualChange() {
   if (document.getElementById('btnAutoOrManual').checked) {
     document.getElementById('lblAutoOrManual').innerText = 'Auto'
     document.getElementById('btnGetLogs').disabled = true
     timerLogsId = setInterval(getAgentLog, 3000)
     getAgentLog()
-  }
-  else {
+  } else {
     document.getElementById('lblAutoOrManual').innerText = 'Manual'
     document.getElementById('btnGetLogs').disabled = false
     clearInterval(timerLogsId)
@@ -130,7 +127,7 @@ async function getAgentLog() {
       }
     }
   } catch (error) {
-    document.getElementById('btnAutoOrManual').checked=false
+    document.getElementById('btnAutoOrManual').checked = false
     btnAutoOrManualChange()
     console.error('logs', 'Error:', error)
   }

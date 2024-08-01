@@ -1,4 +1,3 @@
-
 let selectedAgentEndpoint = 'http://localhost:10050'
 let agentEndpointsSize = 0
 let agentEndpointList = []
@@ -66,7 +65,7 @@ async function loadAgentJson(agentName) {
 
 // refresh list
 async function setSelectList(listElementName, jsonObj, selectedValue = '') {
- // console.log('setSelectList', listElementName, jsonObj)
+  // console.log('setSelectList', listElementName, jsonObj)
   const targetItemList = document.getElementById(listElementName)
   //console.log('before', itemList)
   targetItemList.options.length = 0
@@ -250,8 +249,7 @@ async function sendMsgResult() {
 function btnAllOrOneChange() {
   if (document.getElementById('btnAllOrOne').checked) {
     document.getElementById('lblAllOrOne').innerText = 'All'
-  }
-  else {
+  } else {
     document.getElementById('lblAllOrOne').innerText = 'Selected'
   }
 }
@@ -259,8 +257,7 @@ function btnAllOrOneChange() {
 function btnAgentOrControllerChange() {
   if (document.getElementById('btnAgentOrController').checked) {
     document.getElementById('lblAgentOrController').innerText = 'Agent'
-  }
-  else {
+  } else {
     document.getElementById('lblAgentOrController').innerText = 'Controller'
   }
 }
@@ -268,7 +265,7 @@ function btnAgentOrControllerChange() {
 function getKeyword() {
   let apiKeywordStr = document.getElementById('apiKeyword').value
   apiKeywordStr = apiKeywordStr.trim()
-  if (apiKeywordStr.startsWith('/')){
+  if (apiKeywordStr.startsWith('/')) {
     apiKeywordStr = apiKeywordStr.slice(1)
   }
   if (apiKeywordStr.length < 3) {
@@ -285,8 +282,7 @@ async function sendGetKeyword() {
   disableAndEnableById('btnSendGetKeyword', 1000)
   if (document.getElementById('btnAllOrOne').checked) {
     sendAllAgentsGet(reskeyword)
-  }
-  else {
+  } else {
     const apiUrl = `${selectedAgentEndpoint}/${reskeyword}`
     await getJSON(apiUrl)
   }
@@ -298,8 +294,7 @@ async function sendPostKeyword() {
   disableAndEnableById('btnSendPostKeyword', 1000)
   if (document.getElementById('btnAllOrOne').checked) {
     sendAllAgentsPost(reskeyword)
-  }
-  else {
+  } else {
     const apiUrl = `${selectedAgentEndpoint}/${reskeyword}`
     await postJSON(apiUrl)
   }
@@ -341,19 +336,18 @@ async function getDocuments() {
   sendAllAgentsGet('send/getDocuments')
 }
 
-let IsRunning=false
-let timerTxpoolId=null
-let averageCntMax=6
-let timerInterval=333
+let IsRunning = false
+let timerTxpoolId = null
+let averageCntMax = 6
+let timerInterval = 333
 async function chkTxpool() {
   if (IsRunning) {
-    document.getElementById('txpoolCtrl').innerHTML ='Start TxPool'
+    document.getElementById('txpoolCtrl').innerHTML = 'Start TxPool'
     IsRunning = false
     clearInterval(timerTxpoolId)
     document.getElementById('txpoolStatus').innerHTML = ''
-  }
-  else {
-    document.getElementById('txpoolCtrl').innerHTML ='<b>Stop TxPool</b>'
+  } else {
+    document.getElementById('txpoolCtrl').innerHTML = '<b>Stop TxPool</b>'
     try {
       let response = await fetch(`${selectedAgentEndpoint}/message/blockInterval`)
       let result = await response.json()
@@ -363,11 +357,10 @@ async function chkTxpool() {
       }
       if (result.blockInterval < 3) {
         averageCntMax = result.blockInterval * 3
-        timerInterval=333
-      }
-      else {
+        timerInterval = 333
+      } else {
         averageCntMax = result.blockInterval * 2
-        timerInterval=500
+        timerInterval = 500
       }
       //console.log(`blockInterval: ${result.blockInterval}s -> ${timerInterval}ms, ${averageCntMax}`)
       IsRunning = true
@@ -385,7 +378,7 @@ let txSum = 0
 let txCnt = 0
 let minTx = 100000
 let maxTx = 0
-let averageIdx=0
+let averageIdx = 0
 const queryTxpoolStr = 'message/txpool'
 const txpoolStatusObj = document.getElementById('txpoolStatus')
 async function routineTxpool() {
@@ -408,7 +401,7 @@ async function routineTxpool() {
         if (maxTx < result.txCount) maxTx = result.txCount
       }
     }
-    let txCntNow = (txSum/agentEndpointsSize).toFixed()
+    let txCntNow = (txSum / agentEndpointsSize).toFixed()
     // high average
     txCnt = txCntNow > txCnt ? txCntNow : txCnt
     if (++averageIdx >= averageCntMax) {

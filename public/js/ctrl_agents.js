@@ -1,4 +1,3 @@
-
 let apiEndpoint = 'http://localhost:10050'
 let agentEndpointsSize = 0
 
