@@ -13,8 +13,19 @@ function populateItemList() {
   loadAgentJson(rParam.agent)
   enableTestCase()
   // getStatus()
+  logRangeChange()
   setTimeout(getAllAgentStatus, 1000)
   setTimeout(btnAutoOrManualChange, 2000)
+}
+
+function logRangeChange() {
+  let slider = document.getElementById('logRange')
+  if (preItemHeight != slider.value) {
+    preItemHeight = slider.value
+    document.getElementById('resplog').style.height = `calc(${preItemHeight}vh - 5px)`
+    document.getElementById('agentlog').style.height = `calc(${preItemHeight}vh - 5px)`
+    //console.log('logRangeChange', preItemHeight)
+  }
 }
 
 const itemList = document.getElementById('agentList')
